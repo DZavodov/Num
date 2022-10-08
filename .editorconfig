@@ -1,0 +1,18 @@
+# Copyright 2022 6b6ae4. All Rights Reserved.
+
+# Stop searching?
+root = true
+
+# Encoding.
+[*]
+charset = utf-8
+
+# Indentation style.
+[*]
+indent_style = tab
+indent_size = 4
+trim_trailing_whitespace = true
+
+# Newlines style.
+[*]
+insert_final_newline = true
