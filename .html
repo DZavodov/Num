@@ -67,6 +67,30 @@
 		 *
 		 */
 		class BlackBox {
+			/**  */
+			static #numDelay;
+			/**  */
+			static #numSeparationDelay;
+			/**  */
+			/**
+			 * @param {integer} value .
+			 */
+			static setNumDelay(value) {
+				BlackBox.#numDelay = value;
+				BlackBox.#numSeparationDelay = BlackBox.#numDelay * 0.1;
+			}
+			/**
+			 * @return {integer} .
+			 */
+			static get numDelay() { return BlackBox.#numDelay; }
+			/**
+			 * @return {integer} .
+			 */
+			static get numSeparationDelay() { return BlackBox.#numSeparationDelay; }
+			static {
+				BlackBox.setNumDelay(1000);
+			}
+
 			#view;
 			#nums;
 			/**  */
@@ -78,25 +102,23 @@
 			 * @param {string[]} nums .
 			 */
 			enqueue(nums) {
-				const numDelay = 1000;
-
 				// Disable NumPad
 				setNumPadEnavled(false);
 				setTimeout(function () {
 					setNumPadEnavled(true);
-				}, (nums.length - 1) * numDelay);
+				}, (nums.length - 1) * BlackBox.numDelay);
 
+				// Apply nums
 				for (let index = 0; index < nums.length; ++index) {
-					const indexDelay = index * numDelay;
+					const indexDelay = index * BlackBox.numDelay;
 					setTimeout(function (view) {
 						view.innerHTML = "";
 					}, indexDelay, this.#view);
 					setTimeout(function (view, nums, num) {
 						view.innerHTML = num;
 						nums.push(num);
-					}, indexDelay + 100, this.#view, this.#nums, nums[index]);
+					}, indexDelay + BlackBox.numSeparationDelay, this.#view, this.#nums, nums[index]);
 				}
-				//setNumPadEnavled(true);
 			}
 			/**
 			 * @return {string} .
@@ -145,6 +167,7 @@
 		// 	}
 		// }
 
+		// Entry point
 		// /**  */
 		// const sequence = new RandomSequence([new BlackBox(document.getElementById("BlackBox"))]);
 		// sequence.step();
