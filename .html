@@ -16,6 +16,11 @@
 			--BackGroundColor: #1b1b1b;
 		}
 
+		.disabled {
+			pointer-events: none;
+			opacity: 0.25;
+		}
+
 		.button {
 			color: var(--ContentColor);
 			background-color: var(--BackGroundColor);
@@ -35,7 +40,7 @@
 </head>
 <body style="background-color: var(--BackGroundColor)">
 	<p id=NumView0 class="numView" style="color: var(--ContentColor); text-align: center; margin-left: 10%; font-size: 72px; width: 80%; position: absolute; top: 20px;">Num</p>
-	<div id=NumPad class="numPad" style="top: 200px; text-align: center; margin-left: 10%; height: 400px; width: 80%; position: absolute; top: 220px;">
+	<div id=NumPad class="numPad disabled" style="top: 200px; text-align: center; margin-left: 10%; height: 400px; width: 80%; position: absolute; top: 220px;">
 		<button class="button" onclick="onEnterDigit(1)">1</button>
 		<button class="button" onclick="onEnterDigit(2)">2</button>
 		<button class="button" onclick="onEnterDigit(3)">3</button><br />
@@ -51,12 +56,12 @@
 	</div>
 
 	<script>
-		// /**  */
-		// const numPad = document.getElementById("NumPad");
-		// /**  */
-		// function setNumPadEnavled(value) {
-		// 	numPad.disabled = value;
-		// }
+		/**
+		 * @param {boolean} value .
+		 */
+		function setNumPadEnavled(value) {
+			document.getElementById("NumPad").classList.toggle("disabled", !value);
+		}
 
 		/**
 		 *
@@ -73,9 +78,16 @@
 			 * @param {string[]} nums .
 			 */
 			enqueue(nums) {
-				//setNumPadEnavled(false);
+				const numDelay = 1000;
+
+				// Disable NumPad
+				setNumPadEnavled(false);
+				setTimeout(function () {
+					setNumPadEnavled(true);
+				}, (nums.length - 1) * numDelay);
+
 				for (let index = 0; index < nums.length; ++index) {
-					const indexDelay = index * 1000;
+					const indexDelay = index * numDelay;
 					setTimeout(function (view) {
 						view.innerHTML = "";
 					}, indexDelay, this.#view);
