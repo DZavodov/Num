@@ -23,9 +23,10 @@
 			width: 20%;
 			height: 20%;
 			font-size: 40px;
-			-webkit-transition-duration: 0.4s;
+			-webkit-transition-duration: 0.5s;
 			transition-duration: 0.4s;
 			border-radius: 50px;
+			cursor:pointer;
 		}
 		.button:hover {
 			border-color: var(--HoveredColor);
@@ -33,60 +34,29 @@
 	</style>
 </head>
 <body style="background-color: var(--BackGroundColor)">
-	<p id=NumView class="numView" style="color: var(--ContentColor); text-align: center; margin-left: 10%; font-size: 72px; width: 80%; position: absolute; top: 20px;">Num</p>
+	<p id=NumView0 class="numView" style="color: var(--ContentColor); text-align: center; margin-left: 10%; font-size: 72px; width: 80%; position: absolute; top: 20px;">Num</p>
 	<div id=NumPad class="numPad" style="top: 200px; text-align: center; margin-left: 10%; height: 400px; width: 80%; position: absolute; top: 220px;">
-		<button class="button" onclick="alert('1')">1</button>
-		<button class="button" onclick="alert('2')">2</button>
-		<button class="button" onclick="alert('3')">3</button><br />
-		<button class="button" onclick="alert('4')">4</button>
-		<button class="button" onclick="alert('5')">5</button>
-		<button class="button" onclick="alert('6')">6</button><br />
-		<button class="button" onclick="alert('7')">7</button>
-		<button class="button" onclick="alert('8')">8</button>
-		<button class="button" onclick="alert('9')">9</button><br />
-		<button class="button" onclick="alert('Delete')"><</button>
-		<button class="button" onclick="alert('0')">0</button>
-		<button class="button" onclick="alert('Enter')">></button>
+		<button class="button" onclick="onEnterDigit(1)">1</button>
+		<button class="button" onclick="onEnterDigit(2)">2</button>
+		<button class="button" onclick="onEnterDigit(3)">3</button><br />
+		<button class="button" onclick="onEnterDigit(4)">4</button>
+		<button class="button" onclick="onEnterDigit(5)">5</button>
+		<button class="button" onclick="onEnterDigit(6)">6</button><br />
+		<button class="button" onclick="onEnterDigit(7)">7</button>
+		<button class="button" onclick="onEnterDigit(8)">8</button>
+		<button class="button" onclick="onEnterDigit(9)">9</button><br />
+		<button class="button" disabled onclick="alert('Delete')"><</button>
+		<button class="button" onclick="onEnterDigit(0)">0</button>
+		<button class="button" disabled onclick="alert('Enter')">></button>
 	</div>
+
 	<script>
-		/**
-		 * TODO abstract
-		 */
-		class Sequence {
-			#nextStepIndex;
-			#blackBoxes;
-			/**  */
-			constructor(blackBoxes) {
-				/**  */
-				this.#nextStepIndex = 0;
-				/**  */
-				this.#blackBoxes = blackBoxes;
-			}
-
-			/**  */
-			_getBlackBox_Unsafe(index) {
-				return this.#blackBoxes[index];
-			}
-
-			/**  */
-			isEmpty() { return false; }
-			/**  */
-			step() {
-				++this.#nextStepIndex;
-			}
-			reset() {
-				this.#nextStepIndex = 0;
-			}
-		}
-		/**
-		 *
-		 */
-		class RandomSequence extends Sequence {
-			/**  */
-			step() {
-				this._getBlackBox_Unsafe(0).enqueue(["0"]);
-			}
-		}
+		// /**  */
+		// const numPad = document.getElementById("NumPad");
+		// /**  */
+		// function setNumPadEnavled(value) {
+		// 	numPad.disabled = value;
+		// }
 
 		/**
 		 *
@@ -96,40 +66,95 @@
 			#nums;
 			/**  */
 			constructor(view) {
-				/**  */
 				this.#view = view;
-				/**  */
 				this.#nums = [];
 			}
-			/**  */
+			/**
+			 * @param {string[]} nums .
+			 */
 			enqueue(nums) {
+				//setNumPadEnavled(false);
 				for (let index = 0; index < nums.length; ++index) {
-					setTimeout(function (nums, num) {
+					const indexDelay = index * 1000;
+					setTimeout(function (view) {
+						view.innerHTML = "";
+					}, indexDelay, this.#view);
+					setTimeout(function (view, nums, num) {
+						view.innerHTML = num;
 						nums.push(num);
-					}, index * 1000, this.#nums, nums[index]);
+					}, indexDelay + 100, this.#view, this.#nums, nums[index]);
 				}
+				//setNumPadEnavled(true);
 			}
-			/**  */
-			dequeue(num) {
-				return true;
+			/**
+			 * @return {string} .
+			 */
+			dequeue() {
+				return this.#nums.shift();
 			}
 		}
 
-		/**  */
-		const sequence = new RandomSequence([new BlackBox(document.getElementById("BlackBox"))]);
-		sequence.step();
+		// /**
+		//  * TODO abstract
+		//  */
+		// class Sequence {
+		// 	#nextStepIndex;
+		// 	#blackBoxes;
+		// 	/**  */
+		// 	constructor(blackBoxes) {
+		// 		/**  */
+		// 		this.#nextStepIndex = 0;
+		// 		/**  */
+		// 		this.#blackBoxes = blackBoxes;
+		// 	}
 
-		console.log(sequence);
+		// 	/**  */
+		// 	_getBlackBox_Unsafe(index) {
+		// 		return this.#blackBoxes[index];
+		// 	}
 
-		/**  */
+		// 	/**  */
+		// 	isEmpty() { return false; }
+		// 	/**  */
+		// 	step() {
+		// 		++this.#nextStepIndex;
+		// 	}
+		// 	reset() {
+		// 		this.#nextStepIndex = 0;
+		// 	}
+		// }
+		// /**
+		//  *
+		//  */
+		// class RandomSequence extends Sequence {
+		// 	/**  */
+		// 	step() {
+		// 		this._getBlackBox_Unsafe(0).enqueue(["0"]);
+		// 	}
+		// }
+
+		// /**  */
+		// const sequence = new RandomSequence([new BlackBox(document.getElementById("BlackBox"))]);
+		// sequence.step();
+
+		const blackBox = new BlackBox(document.getElementById("NumView0"));
+		setTimeout(function (blackBox) {
+			blackBox.enqueue(["0", "1", "1", "2"]);
+		}, 1000, blackBox);
+
+		/**
+		 * @param {integer} value .
+		 */
 		function onEnterDigit(value) {
-			if (Num.value != str(value)) {
-
+			console.log(value);
+			const target = blackBox.dequeue()
+			if (target != value) {
+				console.log("Lose:", target);
 			}
 
-			if (sequence.isEmpty()) { console.error("Sequence ended!"); sequence.reset(); }
+			//if (sequence.isEmpty()) { console.error("Sequence ended!"); sequence.reset(); }
 
-			sequence.step();
+			//sequence.step();
 		}
 	</script>
 </body>
