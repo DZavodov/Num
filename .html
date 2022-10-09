@@ -7,10 +7,66 @@
 	<title>Num</title>
 
 	<style>
+		.background {
+			background-color: tomato;
+		}
+		.block {
+			background-color: #0a0907;
+			color: white;
+			text-align: center;
+			margin-left: 10%;
+			font-size: 50px;
+			width: 80%;
+			position: absolute;
+			top: 20px;
+			border: 2px solid white;
+			border-radius: 50px;
+		}
+
+		.blockButton {
+			top: 200px;
+			text-align: center;
+			margin-left: 10%;
+			height: 400px;
+			width: 80%;
+			position: absolute;
+			top: 220px;
+		}
+
+		.btn:hover {
+			background-color: gray; 
+			color: white;
+		}
+		.btn {
+			width: 20%;
+			height: 20%;
+			font-size: 40px;
+			-webkit-transition-duration: 0.4s;
+			transition-duration: 0.4s;
+			border-radius: 50px;
+			
+		}
 		
 	</style>
 </head>
-<body>
+<body style="background-color: #0a0907">
+
+	<input type="button" class="block" id="Num" value="Num - click to start" onclick="this.value='tyt bydet igra'"></input>
+
+	<div class="blockButton">
+		<button name="button" class="btn" id="btn1" onclick="alert('1')">1</button>
+		<button name="button" class="btn" id="btn1" onclick="alert('2')">2</button>
+		<button name="button" class="btn" id="btn1" onclick="alert('3')">3</button><br />
+		<button name="button" class="btn" id="btn1" onclick="alert('4')">4</button>
+		<button name="button" class="btn" id="btn1" onclick="alert('5')">5</button>
+		<button name="button" class="btn" id="btn1" onclick="alert('6')">6</button><br />
+		<button name="button" class="btn" id="btn1" onclick="alert('7')">7</button>
+		<button name="button" class="btn" id="btn1" onclick="alert('8')">8</button>
+		<button name="button" class="btn" id="btn1" onclick="alert('9')">9</button><br />
+		<button name="button" class="btn" id="btn2" onclick="alert('Delite symbols')">del</button>
+		<button name="button" class="btn" id="btn3" onclick="alert('Enter symbols')">enter</button>
+		<button name="button" class="btn" id="btn4" onclick="alert('xz zachem eta knopka')">...</button>
+	</div>
 	<script>
 	</script>
 </body>
