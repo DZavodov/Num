@@ -67,28 +67,26 @@
 		 *
 		 */
 		class BlackBox {
-			/**  */
 			static #numDelay;
-			/**  */
 			static #numSeparationDelay;
-			/**  */
 			/**
-			 * @param {integer} value .
+			 * @param {integer} value ms.
 			 */
-			static setNumDelay(value) {
+			static set numDelay(value) {
 				BlackBox.#numDelay = value;
 				BlackBox.#numSeparationDelay = BlackBox.#numDelay * 0.1;
 			}
 			/**
-			 * @return {integer} .
+			 * @return {integer} ms.
 			 */
 			static get numDelay() { return BlackBox.#numDelay; }
 			/**
-			 * @return {integer} .
+			 * @return {integer} ms.
 			 */
 			static get numSeparationDelay() { return BlackBox.#numSeparationDelay; }
+
 			static {
-				BlackBox.setNumDelay(1000);
+				BlackBox.numDelay = 1000;
 			}
 
 			#view;
@@ -174,7 +172,7 @@
 
 		const blackBox = new BlackBox(document.getElementById("NumView0"));
 		setTimeout(function (blackBox) {
-			blackBox.enqueue(["0", "1", "1", "2"]);
+			blackBox.enqueue([Math.floor(Math.random() * 10), Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)]);
 		}, 1000, blackBox);
 
 		/**
@@ -187,6 +185,7 @@
 				console.log("Lose:", target);
 			}
 
+			blackBox.enqueue([Math.floor(Math.random() * 10)]);
 			//if (sequence.isEmpty()) { console.error("Sequence ended!"); sequence.reset(); }
 
 			//sequence.step();
