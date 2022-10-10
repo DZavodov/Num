@@ -3,34 +3,51 @@
 /**
  *
  */
-class Number {
+class NumNumber {
 	/**
-	 * @return {integer} .
-	 */
-	static get digitsMax() { return 8; }
-	/**
-	 * @todo Optimize.
+	 * @param {NumNumberBase} base .
+	 * @param {integer} digitsSize .
+	 * @warning Check size >= 0 && size <= this.digitsSizeMax!
 	 *
 	 * @return {integer} .
 	 */
-	static get valueMax() { return NumberBase.valueMin ** this.digitsMax - 1; }
+	static makeValueMax_Unsafe(base, digitsSize) {
+		return base.value ** digitsSize - 1;
+	}
 
+	/**
+	 * @return {integer} .
+	 */
+	static get digitsSizeMax() { return 8; }
+
+	/**
+	 * @todo Optimize.
+	 */
+	static get valueMax() { return this.makeValueMax_Unsafe(NumNumberBase.min, this.digitsSizeMax); }
 	/** @todo Optimize. */
 	static get max() { return new this(this.valueMax); }
 
 	/**
-	 * @type {integer}
+	 * @todo Optimize.
+	 *
+	 * @param {NumNumberBase} base .
+	 * @param {integer} figitsSize .
 	 */
+	static makeRandom(base, figitsSize) {
+		return new this(Math.floor(Math.random() * this.makeValueMax_Unsafe(base, figitsSize)));
+	}
+
+	/**  */
 	#value;
 	/**
 	 * @param {integer} value .
 	 */
 	constructor(value = 0) {
-		this.#value = Math.min(Math.max(0, value), Number.valueMax);
+		this.#value = NumMath.clamp(value, 0, NumNumber.valueMax);
 	}
 
 	/**
-	 * @param {NumberBase} base .
+	 * @param {NumNumberBase} base .
 	 */
 	toString(base) {
 		return this.#value.toString(base.value);

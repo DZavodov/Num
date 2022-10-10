@@ -3,7 +3,7 @@
 /**
  *
  */
-class NumberBase {
+class NumNumberBase {
 	/**
 	 * @return {integer} .
 	 */
@@ -28,6 +28,6 @@ class NumberBase {
 	 * @param {integer} value .
 	 */
 	constructor(value) {
-		this.#value = Math.min(Math.max(NumberBase.valueMin, value), NumberBase.valueMax);
+		this.#value = NumMath.clamp(value, NumNumberBase.valueMin, NumNumberBase.valueMax);
 	}
 }
