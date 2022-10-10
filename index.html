@@ -55,6 +55,7 @@
 		<button class="button" disabled onclick="alert('Enter')">></button>
 	</div>
 
+	<script src="Scripts/.js"></script>
 	<script>
 		/**
 		 * @param {boolean} value .
@@ -63,113 +64,7 @@
 			document.getElementById("NumPad").classList.toggle("disabled", !value);
 		}
 
-		/**
-		 *
-		 */
-		class BlackBox {
-			static #numDelay;
-			static #numSeparationDelay;
-			/**
-			 * @param {integer} value ms.
-			 */
-			static set numDelay(value) {
-				BlackBox.#numDelay = value;
-				BlackBox.#numSeparationDelay = BlackBox.#numDelay * 0.1;
-			}
-			/**
-			 * @return {integer} ms.
-			 */
-			static get numDelay() { return BlackBox.#numDelay; }
-			/**
-			 * @return {integer} ms.
-			 */
-			static get numSeparationDelay() { return BlackBox.#numSeparationDelay; }
-
-			static {
-				BlackBox.numDelay = 1000;
-			}
-
-			#view;
-			#nums;
-			/**  */
-			constructor(view) {
-				this.#view = view;
-				this.#nums = [];
-			}
-			/**
-			 * @param {string[]} nums .
-			 */
-			enqueue(nums) {
-				// Disable NumPad
-				setNumPadEnavled(false);
-				setTimeout(function () {
-					setNumPadEnavled(true);
-				}, (nums.length - 1) * BlackBox.numDelay);
-
-				// Apply nums
-				for (let index = 0; index < nums.length; ++index) {
-					const indexDelay = index * BlackBox.numDelay;
-					setTimeout(function (view) {
-						view.innerHTML = "";
-					}, indexDelay, this.#view);
-					setTimeout(function (view, nums, num) {
-						view.innerHTML = num;
-						nums.push(num);
-					}, indexDelay + BlackBox.numSeparationDelay, this.#view, this.#nums, nums[index]);
-				}
-			}
-			/**
-			 * @return {string} .
-			 */
-			dequeue() {
-				return this.#nums.shift();
-			}
-		}
-
-		// /**
-		//  * TODO abstract
-		//  */
-		// class Sequence {
-		// 	#nextStepIndex;
-		// 	#blackBoxes;
-		// 	/**  */
-		// 	constructor(blackBoxes) {
-		// 		/**  */
-		// 		this.#nextStepIndex = 0;
-		// 		/**  */
-		// 		this.#blackBoxes = blackBoxes;
-		// 	}
-
-		// 	/**  */
-		// 	_getBlackBox_Unsafe(index) {
-		// 		return this.#blackBoxes[index];
-		// 	}
-
-		// 	/**  */
-		// 	isEmpty() { return false; }
-		// 	/**  */
-		// 	step() {
-		// 		++this.#nextStepIndex;
-		// 	}
-		// 	reset() {
-		// 		this.#nextStepIndex = 0;
-		// 	}
-		// }
-		// /**
-		//  *
-		//  */
-		// class RandomSequence extends Sequence {
-		// 	/**  */
-		// 	step() {
-		// 		this._getBlackBox_Unsafe(0).enqueue(["0"]);
-		// 	}
-		// }
-
 		// Entry point
-		// /**  */
-		// const sequence = new RandomSequence([new BlackBox(document.getElementById("BlackBox"))]);
-		// sequence.step();
-
 		const blackBox = new BlackBox(document.getElementById("NumView0"));
 		setTimeout(function (blackBox) {
 			blackBox.enqueue([Math.floor(Math.random() * 10), Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)]);
@@ -186,9 +81,6 @@
 			}
 
 			blackBox.enqueue([Math.floor(Math.random() * 10)]);
-			//if (sequence.isEmpty()) { console.error("Sequence ended!"); sequence.reset(); }
-
-			//sequence.step();
 		}
 	</script>
 </body>
