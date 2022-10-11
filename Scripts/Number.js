@@ -5,17 +5,6 @@
  */
 class NumNumber {
 	/**
-	 * @param {NumNumberBase} base .
-	 * @param {integer} digitsSize .
-	 * @warning Check size >= 0 && size <= this.digitsSizeMax!
-	 *
-	 * @return {integer} .
-	 */
-	static makeValueMax_Unsafe(base, digitsSize) {
-		return base.value ** digitsSize - 1;
-	}
-
-	/**
 	 * @return {integer} .
 	 */
 	static get digitsSizeMax() { return 8; }
@@ -23,7 +12,7 @@ class NumNumber {
 	/**
 	 * @todo Optimize.
 	 */
-	static get valueMax() { return this.makeValueMax_Unsafe(NumNumberBase.min, this.digitsSizeMax); }
+	static get valueMax() { return NumNumberBase.min.value ** this.digitsSizeMax - 1; }
 	/** @todo Optimize. */
 	static get max() { return new this(this.valueMax); }
 
@@ -31,14 +20,16 @@ class NumNumber {
 	 * @todo Optimize.
 	 *
 	 * @param {NumNumberBase} base .
-	 * @param {integer} figitsSize .
+	 * @param {integer} digitsSize .
 	 */
-	static makeRandom(base, figitsSize) {
-		return new this(Math.floor(Math.random() * this.makeValueMax_Unsafe(base, figitsSize)));
+	static makeRandom(base, digitsSize = 1) {
+		return new this(Math.floor(Math.random() * base.value ** digitsSize));
 	}
 
 	/**  */
 	#value;
+	/**  */
+	get value() { return this.#value; }
 	/**
 	 * @param {integer} value .
 	 */
