@@ -40,18 +40,23 @@
 </head>
 <body style="background-color: var(--BackGroundColor)">
 	<p id=NumView0 class="numView" style="color: var(--ContentColor); text-align: center; margin-left: 10%; font-size: 72px; width: 80%; position: absolute; top: 20px;">Num</p>
+	<div style="text-align: center;  height:80px; width: 200px; border: 1px solid white; border-radius: 50px; ">
+		<p style="color: var(--ContentColor); ">Score:</p>
+		<p id="countScore" style="color: var(--ContentColor);">0</p>
+	</div>
+
 	<div id=NumPad class="numPad disabled" style="top: 200px; text-align: center; margin-left: 10%; height: 400px; width: 80%; position: absolute; top: 220px;">
-		<button class="button" onclick="onEnterDigit(1)">1</button>
-		<button class="button" onclick="onEnterDigit(2)">2</button>
-		<button class="button" onclick="onEnterDigit(3)">3</button><br />
-		<button class="button" onclick="onEnterDigit(4)">4</button>
-		<button class="button" onclick="onEnterDigit(5)">5</button>
-		<button class="button" onclick="onEnterDigit(6)">6</button><br />
-		<button class="button" onclick="onEnterDigit(7)">7</button>
-		<button class="button" onclick="onEnterDigit(8)">8</button>
-		<button class="button" onclick="onEnterDigit(9)">9</button><br />
+		<button class="button" onclick="countScore(1)">1</button>
+		<button class="button" onclick="countScore(2)">2</button>
+		<button class="button" onclick="countScore(3)">3</button><br />
+		<button class="button" onclick="countScore(4)">4</button>
+		<button class="button" onclick="countScore(5)">5</button>
+		<button class="button" onclick="countScore(6)">6</button><br />
+		<button class="button" onclick="countScore(7)">7</button>
+		<button class="button" onclick="countScore(8)">8</button>
+		<button class="button" onclick="countScore(9)">9</button><br />
 		<button class="button" disabled onclick="alert('Delete')"><</button>
-		<button class="button" onclick="onEnterDigit(0)">0</button>
+		<button class="button" onclick="countScore(0)">0</button>
 		<button class="button" disabled onclick="alert('Enter')">></button>
 	</div>
 
@@ -178,13 +183,39 @@
 		/**
 		 * @param {integer} value .
 		 */
+
+		//add score
+		scoreCount = 0;
+		countMistakes = 0;
+		function countScore(value) {
+			const target = blackBox.dequeue()
+			if (target != value) {
+				scoreCount -= 50;
+				countMistakes += 1
+				if (countMistakes >= 3){
+					if (confirm('Game over\nrestart the game?')) {
+						window.location.reload();
+					}
+					setNumPadEnavled(false);
+					setTimeout(function () {
+						setNumPadEnavled(true);
+					}, (nums.length - 1) * BlackBox.numDelay);
+				}
+			}
+			else {
+				scoreCount += 100;
+			}
+			document.getElementById("countScore").innerHTML = scoreCount;
+			blackBox.enqueue([Math.floor(Math.random() * 10)]);
+		}
+
+		//message in the console
 		function onEnterDigit(value) {
 			console.log(value);
 			const target = blackBox.dequeue()
 			if (target != value) {
 				console.log("Lose:", target);
 			}
-
 			blackBox.enqueue([Math.floor(Math.random() * 10)]);
 			//if (sequence.isEmpty()) { console.error("Sequence ended!"); sequence.reset(); }
 
