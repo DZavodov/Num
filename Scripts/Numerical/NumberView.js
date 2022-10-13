@@ -17,7 +17,9 @@ class NumNumberViewBase {
  *
  */
 class NumParagraphNumberView extends NumNumberViewBase {
-	/**  */
+	/**
+	 * @type {HTMLParagraphElement} .
+	 */
 	#paragraph;
 	/**
 	 * @param {string} id .
