@@ -3,16 +3,18 @@
 /**
  *
  */
- class NumPercent {
+class NumPercent {
 	/** @todo Optimize. */
 	static get min() { return new this(); }
 	/** @todo Optimize. */
 	static get max() { return new this(1); }
 
-	/**  */
+	/**
+	 * @type {float}
+	 */
 	#value;
 	/**  */
-	get value() { return this.value; }
+	get value() { return this.#value; }
 
 	/**
 	 * @param {float} value .

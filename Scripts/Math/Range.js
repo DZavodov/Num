@@ -51,6 +51,8 @@ class NumRange {
 	 * @return {integer} .
 	 */
 	getRandomInteger() {
+		if (this.isValue) { return this.value; }
+
 		const min = Math.ceil(this.#min);
 		return Math.floor(Math.random() * (Math.floor(this.#max) - min + 1) + min);
 	}
