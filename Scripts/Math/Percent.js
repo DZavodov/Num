@@ -4,6 +4,11 @@
  *
  */
  class NumPercent {
+	/** @todo Optimize. */
+	static get min() { return new this(); }
+	/** @todo Optimize. */
+	static get max() { return new this(1); }
+
 	/**  */
 	#value;
 	/**  */
@@ -14,5 +19,10 @@
 	 */
 	constructor(value = 0) {
 		this.#value = NumMath.clamp(value);
+	}
+
+	/**  */
+	getRandomBoolean() {
+		return this.#value === 1 ? true : this.#value > Math.random();
 	}
 }

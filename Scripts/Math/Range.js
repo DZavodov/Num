@@ -12,6 +12,8 @@ class NumRange {
 	get min() { return this.#min; }
 	/**  */
 	get max() { return this.#max; }
+	/**  */
+	get value() { return this.#min; }
 
 	/**
 	 * @param {number} value .
@@ -41,7 +43,15 @@ class NumRange {
 	}
 
 	/**  */
-	isValue() { return this.#min === this.#max; }
+	get isValue() { return this.#min === this.#max; }
 	/**  */
-	isRange() { return this.#min < this.#max; }
+	get isRange() { return this.#min < this.#max; }
+
+	/**
+	 * @return {integer} .
+	 */
+	getRandomInteger() {
+		const min = Math.ceil(this.#min);
+		return Math.floor(Math.random() * (Math.floor(this.#max) - min + 1) + min);
+	}
 }
