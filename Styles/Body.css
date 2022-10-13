@@ -1,0 +1,7 @@
+/** Copyright 2022 DZavodov. All Rights Reserved. */
+
+@import "Colors.css";
+
+body {
+	background-color: var(--BackGroundColor);
+}

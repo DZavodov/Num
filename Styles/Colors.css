@@ -1,0 +1,16 @@
+/** Copyright 2022 DZavodov. All Rights Reserved. */
+
+:root {
+	/**  */
+	--ContentColor: FloralWhite;
+	/**  */
+	--HoveredColor: DarkTurquoise;
+	/**  */
+	--SafeColor: MediumSeaGreen;
+	/**  */
+	--DangerColor: Tomato;
+	/**  */
+	--ContainerColor: #12100E;
+	/**  */
+	--BackGroundColor: #1b1b1b;
+}

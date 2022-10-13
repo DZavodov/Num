@@ -1,0 +1,101 @@
+<!-- Copyright 2022 DZavodov. All Rights Reserved. -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>NumTests</title>
+
+		<link rel=StyleSheet href=Styles/Body.css>
+
+		<link rel=StyleSheet href=https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css>
+		<style>
+			body, code {
+				color: var(--ContentColor);
+			}
+
+			#mocha h1 a:hover {
+				text-decoration: none;
+				background-color: var(--HoveredColor);
+			}
+
+			#mocha-stats {
+				color: var(--ContentColor);
+			}
+			#mocha-stats em {
+				color: var(--ContentColor);
+			}
+			#mocha-stats a:hover {
+				background-color: var(--HoveredColor);
+				border-bottom: none;
+			}
+
+			#mocha-stats canvas {
+				background-color: #BBB;
+				border-radius: 50%;
+			}
+
+			#mocha .test pre {
+				background-color: var(--ContainerColor);
+			}
+
+			#mocha .test a.replay {
+				background-color: var(--ContentColor);
+				color: var(--BackGroundColor);
+				opacity: 1;
+				-webkit-transition: background-color 200ms;
+				-moz-transition:    background-color 200ms;
+				-o-transition:      background-color 200ms;
+				transition:         background-color 200ms;
+			}
+
+			#mocha .test:hover a.replay:hover {
+				background-color: var(--HoveredColor);
+			}
+
+			#mocha .test.pass.slow .duration {
+				background: var(--DangerColor);
+			}
+			#mocha .test.pass::before {
+				color: var(--SafeColor);
+			}
+
+			#mocha .test.fail {
+				color: var(--DangerColor);
+			}
+			#mocha .test.fail::before {
+				color: var(--DangerColor);
+			}
+			#mocha .test pre.error {
+				color: var(--DangerColor);
+			}
+		</style>
+
+		<script src=https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js></script>
+
+		<script src=https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js></script>
+	</head>
+	<body>
+		<script>
+			mocha.setup("bdd");
+
+			/**  */
+			const expect = chai.expect;
+		</script>
+
+		<!-- Tests. -->
+		<script>
+			describe("Test", function() {
+				it("f(..)", function () {
+					expect(true);
+				});
+			});
+		</script>
+
+		<!-- Entry point. -->
+		<div id=mocha></div>
+		<script >
+			mocha.run();
+		</script>
+	</body>
+</html>

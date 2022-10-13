@@ -6,16 +6,8 @@
 	<meta charset=utf-8>
 	<title>Num</title>
 
+	<link rel=StyleSheet href=Styles/Body.css>
 	<style>
-		:root {
-			/**  */
-			--ContentColor: FloralWhite;
-			/**  */
-			--HoveredColor: DarkTurquoise;
-			/**  */
-			--BackGroundColor: #1b1b1b;
-		}
-
 		.disabled {
 			pointer-events: none;
 			opacity: 0.25;
@@ -38,7 +30,7 @@
 		}
 	</style>
 </head>
-<body style="background-color: var(--BackGroundColor)">
+<body>
 	<p id=NumView0 class="numView" style="color: var(--ContentColor); text-align: center; margin-left: 10%; font-size: 72px; width: 80%; position: absolute; top: 20px;">Num</p>
 	<div id=NumPad class="numPad disabled" style="top: 200px; text-align: center; margin-left: 10%; height: 400px; width: 80%; position: absolute; top: 220px;">
 		<button class="button" onclick="onEnterDigit(1)">1</button>
