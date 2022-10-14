@@ -18,7 +18,7 @@ class NumRandomGeneratorBase {
 	/**
 	 * @param {integer} seed .
 	 */
-	constructor(seed = NumMath.randomInteger()) {
+	constructor(seed = NumMath.randomGenerator.randomInteger()) {
 		this.seed = seed;
 	}
 
@@ -28,6 +28,11 @@ class NumRandomGeneratorBase {
 	 * @return {float} In range [0..1].
 	 */
 	get random() { throw new Error(); }
+
+	/**
+	 * @param {integer} max .
+	 */
+	randomInteger(max = Number.MAX_SAFE_INTEGER) { return Math.floor(this.random * max); }
 }
 
 /**
@@ -41,6 +46,3 @@ class NumRandomGenerator extends NumRandomGeneratorBase {
 	 */
 	get random() { return Math.random(); }
 }
-
-/**  */
-const numMathRandomGenerator = new NumRandomGenerator(0);

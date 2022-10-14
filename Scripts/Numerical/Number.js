@@ -7,24 +7,12 @@ class NumNumber {
 	/**
 	 * @return {integer} .
 	 */
-	static get digitsSizeMax() { return 8; }
+	static get #digitsSizeMax() { return 8; }
 
-	/**
-	 * @todo Optimize.
-	 */
-	static get valueMax() { return NumNumberBase.min.value ** this.digitsSizeMax - 1; }
-	/** @todo Optimize. */
-	static get max() { return new this(this.valueMax); }
-
-	/**
-	 * @todo Optimize.
-	 *
-	 * @param {NumNumberBase} base .
-	 * @param {integer} digitsSize .
-	 */
-	static makeRandom(base, digitsSize = 1) {
-		return new this(Math.floor(Math.random() * base.value ** digitsSize));
-	}
+	/**  */
+	static #max = new this(NumNumberBase.min.value ** this.#digitsSizeMax - 1);
+	/**  */
+	static get max() { return this.#max; }
 
 	/**  */
 	#value;
@@ -34,7 +22,16 @@ class NumNumber {
 	 * @param {integer} value .
 	 */
 	constructor(value = 0) {
-		this.#value = NumMath.clamp(value, 0, NumNumber.valueMax);
+		this.#value = NumMath.clamp(value, 0, NumNumber.max.value);
+	}
+
+	/**
+	 * @param {NumRandomGeneratorBase} generator .
+	 * @param {NumNumberBase} base .
+	 * @param {integer} digitsSize .
+	 */
+	static makeRandom(generator, base, digitsSize = 1) {
+		return new this(generator.randomInteger(base.value ** digitsSize));
 	}
 
 	/**

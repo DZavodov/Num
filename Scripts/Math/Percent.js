@@ -5,10 +5,9 @@
  */
 class NumPercent {
 	/**  */
-	static #min = new NumPercent();
+	static #min = new this();
 	/**  */
-	static #max = new NumPercent(1);
-
+	static #max = new this(1);
 	/**  */
 	static get min() { return this.#min; }
 	/**  */

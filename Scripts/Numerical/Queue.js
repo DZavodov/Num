@@ -20,13 +20,6 @@ class NumQueue {
 	 */
 	static #numberSeparationDelay;
 	/**
-	 * @param {Delay} value ms.
-	 */
-	static set numberDelay(value) {
-		this.#numberDelay = value;
-		this.#numberSeparationDelay = this.#numberDelay / 10;
-	}
-	/**
 	 * @return ms.
 	 */
 	static get numberDelay() { return this.#numberDelay; }
@@ -34,6 +27,13 @@ class NumQueue {
 	 * @return ms.
 	 */
 	static get numberSeparationDelay() { return this.#numberSeparationDelay; }
+	/**
+	 * @param {Delay} value ms.
+	 */
+	static set numberDelay(value) {
+		this.#numberDelay = value;
+		this.#numberSeparationDelay = this.#numberDelay / 10;
+	}
 
 	static {
 		this.numberDelay = 1000;

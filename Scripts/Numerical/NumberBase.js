@@ -4,19 +4,14 @@
  *
  */
 class NumNumberBase {
-	/**
-	 * @return {integer} .
-	 */
-	static get valueMin() { return 2; }
-	/**
-	 * @return {integer} .
-	 */
-	static get valueMax() { return 10; }
-
-	/** @todo Optimize. */
-	static get min() { return new this(this.valueMin); }
-	/** @todo Optimize. */
-	static get max() { return new this(this.valueMax); }
+	/**  */
+	static #min = new this(2);
+	/**  */
+	static #max = new this(10);
+	/**  */
+	static get min() { return this.#min; }
+	/**  */
+	static get max() { return this.#max; }
 
 	/**
 	 * @type {integer}
@@ -28,6 +23,6 @@ class NumNumberBase {
 	 * @param {integer} value .
 	 */
 	constructor(value) {
-		this.#value = NumMath.clamp(value, NumNumberBase.valueMin, NumNumberBase.valueMax);
+		this.#value = NumMath.clamp(value, NumNumberBase.min.value, NumNumberBase.max.value);
 	}
 }
