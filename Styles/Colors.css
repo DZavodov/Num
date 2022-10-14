@@ -8,9 +8,11 @@
 	/**  */
 	--SafeColor: MediumSeaGreen;
 	/**  */
+	--WarningColor: #D0AE50;
+	/**  */
 	--DangerColor: Tomato;
 	/**  */
-	--ContainerColor: #12100E;
+	--ContainerColor: #090809;
 	/**  */
-	--BackGroundColor: #1b1b1b;
+	--BackGroundColor: #1B1B1B;
 }
