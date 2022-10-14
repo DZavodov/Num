@@ -7,10 +7,9 @@ class NumNumberViewBase {
 	/**
 	 * @abstract
 	 *
-	 * @param {NumNumber} number .
-	 * @param {NumNumberBase} base .
+	 * @param {string} value .
 	 */
-	draw(number, base) { throw new Error(); }
+	draw(value) { throw new Error(); }
 }
 
 /**
@@ -33,21 +32,10 @@ class NumParagraphNumberView extends NumNumberViewBase {
 	/**
 	 * @override
 	 *
-	 * @param {NumNumber} number .
-	 * @param {NumNumberBase} base .
+	 * @param {string} value .
 	 */
-	draw(number, base) { this.#paragraph.innerHTML = number.toString(base); }
-}
-
-/**
- *
- */
-class NumConsoleNumberView extends NumNumberViewBase {
-	/**
-	 * @override
-	 *
-	 * @param {NumNumber} number .
-	 * @param {NumNumberBase} base .
-	 */
-	draw(number, base) { console.log(number.toString(base)); }
+	draw(value) {
+		console.log(value); // TODO Debug
+		this.#paragraph.innerText = value;
+	}
 }
