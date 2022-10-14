@@ -23,8 +23,10 @@ class NumPercent {
 		this.#value = NumMath.clamp(value);
 	}
 
-	/**  */
-	getRandomBoolean() {
-		return this.#value === 1 ? true : this.#value > Math.random();
+	/**
+	 * @param {NumRandomGenerator} generator .
+	 */
+	getRandomBoolean(generator) {
+		return this.#value === 1 ? true : this.#value > generator.random;
 	}
 }

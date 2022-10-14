@@ -19,8 +19,10 @@ class NumPercentBoolean {
 	/**  */
 	get value() { return this.#value; }
 
-	/**  */
-	randomize() {
-		this.#value = this.percent.getRandomBoolean();
+	/**
+	 * @param {NumRandomGenerator} generator .
+	 */
+	randomize(generator) {
+		this.#value = this.percent.getRandomBoolean(generator);
 	}
 }

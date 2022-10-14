@@ -3,15 +3,16 @@
 describe("RangedInteger", function() {
 	it("randomize(..)", function () {
 		const rangedInteger = new NumRangedInteger(new NumRange(42));
+		const generator = new NumRandomGenerator();
 		for (let index = 0; index < 100; ++index) {
-			rangedInteger.randomize();
+			rangedInteger.randomize(generator);
 			expect(rangedInteger.value).equal(42);
 		}
 
 		rangedInteger.range = NumRange.makeMax(0, 2);
 		const histogram = [0, 0, 0];
 		for (let index = 0; index < 30000; ++index) {
-			rangedInteger.randomize();
+			rangedInteger.randomize(generator);
 			++histogram[rangedInteger.value];
 		}
 		const irregularities = [histogram[0] / histogram[1], histogram[1] / histogram[0], histogram[2] / histogram[1]];

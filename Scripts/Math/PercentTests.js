@@ -16,17 +16,18 @@ describe("Percent", function() {
 	});
 
 	it("getRandomBoolean(..)", function () {
-		for (let index = 0; index < 10; ++index) {
-			expect(new NumPercent(-10).getRandomBoolean()).is.false;
-			expect(new NumPercent().getRandomBoolean()).is.false;
-			expect(new NumPercent(1).getRandomBoolean()).is.true;
-			expect(new NumPercent(10).getRandomBoolean()).is.true;
+		const generator = new NumRandomGenerator();
+		for (let index = 0; index < 100; ++index) {
+			expect(new NumPercent(-10).getRandomBoolean(generator)).is.false;
+			expect(new NumPercent().getRandomBoolean(generator)).is.false;
+			expect(new NumPercent(1).getRandomBoolean(generator)).is.true;
+			expect(new NumPercent(10).getRandomBoolean(generator)).is.true;
 		}
 
 		const halfPrcent = new NumPercent(.5);
 		const histogram = [0, 0];
 		for (let index = 0; index < 20000; ++index) {
-			++histogram[halfPrcent.getRandomBoolean() ? 1 : 0];
+			++histogram[halfPrcent.getRandomBoolean(generator) ? 1 : 0];
 		}
 		const irregularity = histogram[1] / histogram[0];
 		console.log(this.test.title, histogram, irregularity);

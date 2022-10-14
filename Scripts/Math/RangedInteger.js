@@ -21,8 +21,10 @@ class NumRangedInteger {
 	/**  */
 	get value() { return this.#value; }
 
-	/**  */
-	randomize() {
-		this.#value = this.range.isValue ? this.range.value : this.range.getRandomInteger();
+	/**
+	 * @param {NumRandomGenerator} generator .
+	 */
+	randomize(generator) {
+		this.#value = this.range.isValue ? this.range.value : this.range.getRandomInteger(generator);
 	}
 }
