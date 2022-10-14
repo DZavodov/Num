@@ -9,8 +9,12 @@ class NumNumber {
 	 */
 	static get #digitsSizeMax() { return 8; }
 
+	/**
+	 * @type {integer}
+	 */
+	static #maxValue = NumNumberBase.min.value ** this.#digitsSizeMax - 1
 	/**  */
-	static #max = new this(NumNumberBase.min.value ** this.#digitsSizeMax - 1);
+	static #max = new this(this.#maxValue);
 	/**  */
 	static get max() { return this.#max; }
 
@@ -22,7 +26,7 @@ class NumNumber {
 	 * @param {integer} value .
 	 */
 	constructor(value = 0) {
-		this.#value = NumMath.clamp(value, 0, NumNumber.max.value);
+		this.#value = NumMath.clamp(value, 0, NumNumber.#maxValue);
 	}
 
 	/**

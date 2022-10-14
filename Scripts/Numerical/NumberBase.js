@@ -5,9 +5,13 @@
  */
 class NumNumberBase {
 	/**  */
-	static #min = new this(2);
+	static get #valueMin() { return 2; }
 	/**  */
-	static #max = new this(10);
+	static get #valueMax() { return 10; }
+	/**  */
+	static #min = new this(this.#valueMin);
+	/**  */
+	static #max = new this(this.#valueMax);
 	/**  */
 	static get min() { return this.#min; }
 	/**  */
@@ -23,6 +27,6 @@ class NumNumberBase {
 	 * @param {integer} value .
 	 */
 	constructor(value) {
-		this.#value = NumMath.clamp(value, NumNumberBase.min.value, NumNumberBase.max.value);
+		this.#value = NumMath.clamp(value, NumNumberBase.#valueMin, NumNumberBase.#valueMax);
 	}
 }

@@ -16,13 +16,9 @@ describe("PercentBoolean", function() {
 		}
 
 		percentBoolean.percent = new NumPercent(.5);
-		const histogram = [0, 0];
-		for (let index = 0; index < 20000; ++index) {
+		numLogRandomMeasure(this.test.title, 2, index => {
 			percentBoolean.randomize(generator);
-			++histogram[percentBoolean.value ? 1 : 0];
-		}
-		const irregularity = histogram[1] / histogram[0];
-		console.log(this.test.title, histogram, irregularity);
-		expect(irregularity > .9 && irregularity < 1.1).is.true;
+			return percentBoolean.value ? 1 : 0;
+		});
 	});
 });
