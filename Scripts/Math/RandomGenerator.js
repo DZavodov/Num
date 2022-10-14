@@ -18,7 +18,7 @@ class NumRandomGeneratorBase {
 	/**
 	 * @param {integer} seed .
 	 */
-	constructor(seed = Math.random()) {
+	constructor(seed = NumMath.randomInteger()) {
 		this.seed = seed;
 	}
 
@@ -41,3 +41,6 @@ class NumRandomGenerator extends NumRandomGeneratorBase {
 	 */
 	get random() { return Math.random(); }
 }
+
+/**  */
+const numMathRandomGenerator = new NumRandomGenerator(0);
