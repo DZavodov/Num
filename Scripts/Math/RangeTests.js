@@ -78,7 +78,7 @@ describe("Range", function() {
 			expect(new NumRange(42).getRandomInteger(generator)).equal(42);
 		}
 
-		const range = NumRange.makeMax(0, 2);
+		const range = NumRange.makeMax(-0.2, 2.2);
 		const histogram = [0, 0, 0];
 		for (let index = 0; index < 30000; ++index) {
 			++histogram[range.getRandomInteger(generator)];

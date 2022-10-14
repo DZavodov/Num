@@ -20,7 +20,7 @@ class NumRange {
 	 */
 	constructor(value) {
 		this.#min = value;
-		this.#max = value;
+		this.#max = this.#min;
 	}
 
 	/**

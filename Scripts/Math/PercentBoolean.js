@@ -5,7 +5,7 @@
  */
 class NumPercentBoolean {
 	/**  */
-	constructor(percent = new NumPercent()) {
+	constructor(percent = NumPercent.min) {
 		/**
 		 * @type {NumPercent}
 		 */

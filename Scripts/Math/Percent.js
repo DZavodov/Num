@@ -4,10 +4,15 @@
  *
  */
 class NumPercent {
-	/** @todo Optimize. */
-	static get min() { return new this(); }
-	/** @todo Optimize. */
-	static get max() { return new this(1); }
+	/**  */
+	static #min = new NumPercent();
+	/**  */
+	static #max = new NumPercent(1);
+
+	/**  */
+	static get min() { return this.#min; }
+	/**  */
+	static get max() { return this.#max; }
 
 	/**
 	 * @type {float}
@@ -27,6 +32,6 @@ class NumPercent {
 	 * @param {NumRandomGeneratorBase} generator .
 	 */
 	getRandomBoolean(generator) {
-		return this.#value === 1 ? true : this.#value > generator.random;
+		return this.#value >= 1 ? true : this.#value > generator.random;
 	}
 }
