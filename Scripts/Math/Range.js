@@ -48,7 +48,7 @@ class NumRange {
 	get isRange() { return this.#min < this.#max; }
 
 	/**
-	 * @param {NumRandomGenerator} generator .
+	 * @param {NumRandomGeneratorBase} generator .
 	 *
 	 * @return {integer} .
 	 */

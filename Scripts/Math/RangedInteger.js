@@ -22,7 +22,7 @@ class NumRangedInteger {
 	get value() { return this.#value; }
 
 	/**
-	 * @param {NumRandomGenerator} generator .
+	 * @param {NumRandomGeneratorBase} generator .
 	 */
 	randomize(generator) {
 		this.#value = this.range.isValue ? this.range.value : this.range.getRandomInteger(generator);

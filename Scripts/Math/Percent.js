@@ -24,7 +24,7 @@ class NumPercent {
 	}
 
 	/**
-	 * @param {NumRandomGenerator} generator .
+	 * @param {NumRandomGeneratorBase} generator .
 	 */
 	getRandomBoolean(generator) {
 		return this.#value === 1 ? true : this.#value > generator.random;
