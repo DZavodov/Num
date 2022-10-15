@@ -30,7 +30,8 @@ describe("Range", function() {
 		 function testMinMaxIsRange(min, max, overrideMin = undefined) {
 			const range = NumRange.makeMin(min, max);
 
-			expect(range.min).equal(overrideMin === undefined ? min : overrideMin);
+			expect(range.min).equal(overrideMin === undefined ?
+				min : overrideMin);
 			expect(range.max).equal(max);
 
 			const isRange = min < max;
@@ -56,7 +57,8 @@ describe("Range", function() {
 			const range = NumRange.makeMax(min, max);
 
 			expect(range.min).equal(min);
-			expect(range.max).equal(overrideMax === undefined ? max : overrideMax);
+			expect(range.max).equal(overrideMax === undefined ?
+				max : overrideMax);
 
 			const isRange = min < max;
 			expect(range.isValue).not.equal(isRange);
@@ -79,7 +81,7 @@ describe("Range", function() {
 		}
 
 		const range = NumRange.makeMax(-0.2, 2.2);
-		numLogRandomMeasure(this.test.title, 3, index => {
+		numTestIsUniformRandom(this.test.title, 3, index => {
 			return range.getRandomInteger(generator);
 		});
 	});

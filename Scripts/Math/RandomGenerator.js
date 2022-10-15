@@ -32,7 +32,9 @@ class NumRandomGeneratorBase {
 	/**
 	 * @param {integer} max .
 	 */
-	randomInteger(max = Number.MAX_SAFE_INTEGER) { return Math.floor(this.random * max); }
+	randomInteger(max = Number.MAX_SAFE_INTEGER) {
+		return Math.floor(this.random * max);
+	}
 }
 
 /**

@@ -17,17 +17,18 @@ describe("Number", function() {
 
 	it("makeRandom(..)", function () {
 		const generator = new NumRandomGenerator();
-		numLogRandomMeasure(this.test.title, 2, index => {
+		numTestIsUniformRandom(this.test.title, 2, index => {
 			return NumNumber.makeRandom(generator, NumNumberBase.min).value;
 		});
-		numLogRandomMeasure(this.test.title, 4, index => {
+		numTestIsUniformRandom(this.test.title, 4, index => {
 			return NumNumber.makeRandom(generator, NumNumberBase.min, 2).value;
 		});
 	});
 
 	it("toString(..)", function () {
 		expect(new NumNumber(42).toString(NumNumberBase.min)).equal("101010");
-		expect(new NumNumber(42).toString(new NumNumberBase(2))).equal("101010");
+		expect(
+			new NumNumber(42).toString(new NumNumberBase(2))).equal("101010");
 		expect(new NumNumber(42).toString(new NumNumberBase(10))).equal("42");
 		expect(new NumNumber(42).toString(NumNumberBase.max)).equal("42");
 	});

@@ -27,7 +27,7 @@ describe("Percent", function() {
 		}
 
 		const halfPrcent = new NumPercent(.5);
-		numLogRandomMeasure(this.test.title, 2, index => {
+		numTestIsUniformRandom(this.test.title, 2, index => {
 			return halfPrcent.getRandomBoolean(generator) ? 1 : 0;
 		});
 	});

@@ -34,8 +34,12 @@ class NumHistoramDistribution {
 	constructor(rows) {
 		this.#links = [];
 		for (let outerIndex = 0; outerIndex < rows.length; ++outerIndex) {
-			for (let innerIndex = outerIndex + 1; innerIndex < rows.length; ++innerIndex) {
-				this.#links.push(new NumHistogramDistributionLink(rows[outerIndex] / rows[innerIndex]));
+			for (let innerIndex = outerIndex + 1;
+				innerIndex < rows.length;
+				++innerIndex) {
+				this.#links.push(
+					new NumHistogramDistributionLink(
+						rows[outerIndex] / rows[innerIndex]));
 			}
 		}
 	}
@@ -89,9 +93,10 @@ class NumHistogram {
  * @param {integer} size .
  * @param {NumHistogram.Iteration} functor .
  */
-function numLogRandomMeasure(title, size, functor) {
+function numTestIsUniformRandom(title, size, functor) {
 	const histogram = new NumHistogram(size);
 	const distribution = histogram.measure(functor);
 	console.log(title, histogram, distribution);
-	distribution.links.forEach(link => { expect(link.isNearlyUniform()).is.true; });
+	distribution.links.forEach(link => {
+		expect(link.isNearlyUniform()).is.true; });
 }

@@ -10,7 +10,7 @@ describe("RandomGenerator", function() {
 
 	it("random(..)", function () {
 		const generator = new NumRandomGenerator();
-		numLogRandomMeasure(this.test.title, 3, index => {
+		numTestIsUniformRandom(this.test.title, 3, index => {
 			return Math.floor(generator.random * 3);
 		});
 	});
@@ -24,7 +24,7 @@ describe("RandomGenerator", function() {
 			expect(generator.randomInteger(0)).is.zero;
 		}
 
-		numLogRandomMeasure(this.test.title, 3, index => {
+		numTestIsUniformRandom(this.test.title, 3, index => {
 			return generator.randomInteger(3);
 		});
 	});

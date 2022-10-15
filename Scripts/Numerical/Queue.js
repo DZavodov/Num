@@ -32,7 +32,7 @@ class NumQueue {
 	 */
 	static set numberDelay(value) {
 		this.#numberDelay = value;
-		this.#numberSeparationDelay = this.#numberDelay / 10;
+		this.#numberSeparationDelay = Math.round(this.#numberDelay / 10);
 	}
 
 	static {
@@ -47,7 +47,7 @@ class NumQueue {
 	#numbers;
 
 	/**
-	 * @param {NumNumberViewBase} view .
+	 * @param {NumViewBase} view .
 	 */
 	constructor(view) {
 		this.#view = view;
@@ -60,10 +60,10 @@ class NumQueue {
 	enqueue(numbers) {
 		for (let index = 0; index < numbers.length; ++index) {
 			const indexDelay = index * NumQueue.numberDelay;
-			setTimeout(() => { this.#view.draw(""); }, indexDelay);
+			setTimeout(() => { this.#view.draw = ""; }, indexDelay);
 			setTimeout(() => {
 				const number = numbers[index];
-				this.#view.draw(number);
+				this.#view.draw = number;
 				this.#numbers.push(number);
 			}, indexDelay + NumQueue.numberSeparationDelay);
 		}

@@ -27,6 +27,8 @@ class NumNumberBase {
 	 * @param {integer} value .
 	 */
 	constructor(value) {
-		this.#value = NumMath.clamp(value, NumNumberBase.#valueMin, NumNumberBase.#valueMax);
+		this.#value = NumMath.clamp(value,
+			NumNumberBase.#valueMin,
+			NumNumberBase.#valueMax);
 	}
 }

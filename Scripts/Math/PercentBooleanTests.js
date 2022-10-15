@@ -16,7 +16,7 @@ describe("PercentBoolean", function() {
 		}
 
 		percentBoolean.percent = new NumPercent(.5);
-		numLogRandomMeasure(this.test.title, 2, index => {
+		numTestIsUniformRandom(this.test.title, 2, index => {
 			percentBoolean.randomize(generator);
 			return percentBoolean.value ? 1 : 0;
 		});

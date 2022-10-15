@@ -3,19 +3,19 @@
 /**
  * @abstract
  */
-class NumNumberViewBase {
+ class NumViewBase {
 	/**
 	 * @abstract
 	 *
 	 * @param {string} value .
 	 */
-	draw(value) { throw new Error(); }
+	set draw(value) { throw new Error(); }
 }
 
 /**
  *
  */
-class NumParagraphNumberView extends NumNumberViewBase {
+class NumParagraphView extends NumViewBase {
 	/**
 	 * @type {HTMLParagraphElement} .
 	 */
@@ -34,7 +34,7 @@ class NumParagraphNumberView extends NumNumberViewBase {
 	 *
 	 * @param {string} value .
 	 */
-	draw(value) {
+	set draw(value) {
 		console.log(value); // TODO Debug
 		this.#paragraph.innerText = value;
 	}

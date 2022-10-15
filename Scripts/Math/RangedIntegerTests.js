@@ -10,7 +10,7 @@ describe("RangedInteger", function() {
 		}
 
 		rangedInteger.range = NumRange.makeMax(0, 2);
-		numLogRandomMeasure(this.test.title, 3, index => {
+		numTestIsUniformRandom(this.test.title, 3, index => {
 			rangedInteger.randomize(generator);
 			return rangedInteger.value;
 		});
