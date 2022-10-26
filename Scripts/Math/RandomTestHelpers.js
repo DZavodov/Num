@@ -15,7 +15,7 @@ class NumHistogramDistributionLink {
 
 	/**  */
 	isNearlyUniform(tolerance = .1) {
-		return this.#value > 1 - tolerance && this.#value < 1 + tolerance;
+		return Math.abs(this.#value - 1) <= tolerance;
 	}
 }
 
