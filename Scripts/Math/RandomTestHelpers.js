@@ -3,27 +3,10 @@
 /**
  *
  */
-class NumHistogramDistributionLink {
-	/**  */
-	#value;
-	/**
-	 * @param {float} value .
-	 */
-	constructor(value) {
-		this.#value = value;
-	}
-
-	/**  */
-	isNearlyUniform(tolerance = .1) {
-		return Math.abs(this.#value - 1) <= tolerance;
-	}
-}
-
-/**
- *
- */
 class NumHistoramDistribution {
-	/**  */
+	/**
+	 * @type {float}
+	 */
 	#links;
 	/**  */
 	get links() { return this.#links; }
@@ -37,9 +20,7 @@ class NumHistoramDistribution {
 			for (let innerIndex = outerIndex + 1;
 				innerIndex < rows.length;
 				++innerIndex) {
-				this.#links.push(
-					new NumHistogramDistributionLink(
-						rows[outerIndex] / rows[innerIndex]));
+				this.#links.push(rows[outerIndex] / rows[innerIndex]);
 			}
 		}
 	}
@@ -98,5 +79,5 @@ function numTestIsUniformRandom(title, size, functor) {
 	const distribution = histogram.measure(functor);
 	console.log(title, histogram, distribution);
 	distribution.links.forEach(link => {
-		expect(link.isNearlyUniform()).is.true; });
+		expect(Math.abs(link - 1)).not.above(.1); });
 }
